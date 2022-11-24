@@ -395,10 +395,6 @@ while run:
             if play.health == 0:
                 play.isDead = True
                 dead_sfx.play()
-                if play.x < enemy1.x:
-                    play.x -= 150
-                elif play.x > enemy1.x:
-                    play.x += 150
             else:
                 play.isHurt = True
                 hurt_sfx.play()
@@ -410,10 +406,6 @@ while run:
             if play.health == 0:
                 play.isDead = True
                 dead_sfx.play()
-                if play.x < enemy2.x:
-                    play.x -= 150
-                elif play.x > enemy2.x:
-                    play.x += 150
             else:
                 play.isHurt = True
                 hurt_sfx.play()
@@ -463,12 +455,13 @@ while run:
                         
     #CONDITIONAL FOR JUMPING
     if not(play.isJump):
-        if not(play.isHurt) or not(play.isDead):
-            if (keys[pygame.K_w]):
-                jump_sfx.play()
-                play.isJump = True
-                play.walk_ctr = 0
-                play.speed *= 1.25
+        if not(play.isDead):
+            if not(play.isHurt):
+                if (keys[pygame.K_w]):
+                    jump_sfx.play()
+                    play.isJump = True
+                    play.walk_ctr = 0
+                    play.speed *= 1.25
     else:
         if (play.jumpCount >= -10):
             play.y -= (play.jumpCount *abs(play.jumpCount)) *.5
